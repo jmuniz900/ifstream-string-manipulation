@@ -18,7 +18,7 @@ void Deposit(string &name, PERSON (&personArray)[10], int &nPeople);
 
 void display(PERSON (&personArray)[10], int &nPeople){
 
-    cout << "Name      " << "Balance  " << endl;
+    cout << "Name          " << "Balance  " << endl;
     cout << "--------------------------" << endl;
     for(int i = 0; i < nPeople; i++){
       for(int j = 0; j < 20; j++)
@@ -45,7 +45,28 @@ void FindRichest(PERSON (&personArray)[10], int &nPeople){
     cout << endl;
 }
 void Deposit(string &name, PERSON (&personArray)[10], int &nPeople){
+  float addMoney;
+  char tmpName[20];
+  string tmpName2;
+  int counter = 0;
 
+  cout << name << ", how much would you like to deposit? " << endl;
+  cin >> addMoney;
+  cout << endl;
+
+strcpy(tmpName, name.c_str());
+
+while(counter < nPeople){
+  //for(int i = 0; i < nPeople; i++){
+    for(int j = 0; j < name.length(); j++ ){
+      if(tmpName[j] == personArray[counter].name[j]){
+          personArray[counter].balance += addMoney;
+      }
+    counter++;
+    }
+  }
+  cout << "Now your new balance is: " << personArray[counter].balance;
+  cout << endl;
 }
 
 int main(){
@@ -54,6 +75,7 @@ int main(){
   string firstName;
   string lastName;
   string fullName;
+  string inputName;
 
   int mPeople = 6;
   char charName[20];
@@ -87,6 +109,10 @@ int main(){
     display(person, mPeople);
     cout << endl << endl;
     FindRichest(person, mPeople);
+    cout << "Enter your full name to deposit money: ";
+    getline(cin, inputName);
+    cout << endl;
+    Deposit(inputName, person, mPeople);
 
  /* cout << person[0].balance << endl;
     for(int j = 0; j < 20; j++)
