@@ -36,12 +36,10 @@ void FindRichest(PERSON (&personArray)[10], int &nPeople){
     }
       cout << "The person with the highest balance is ";
     for(int i = 0; i < nPeople; i++){
-      for(int j = 0; j < 20; j++){
         if(tmp == personArray[i].balance){
-          cout << personArray[i].name[j];
+          cout << personArray[i].name;
         }
       }
-    }
     cout << endl;
 }
 void Deposit(string &name, PERSON (&personArray)[10], int &nPeople){
