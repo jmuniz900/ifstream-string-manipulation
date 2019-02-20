@@ -8,7 +8,7 @@ using namespace std;
 //n = 6 <---- amount of people on file.
 
 struct PERSON{
-public:  char name[20];
+  char name[20];
   float balance;
 };
 
@@ -22,9 +22,8 @@ void display(PERSON (&personArray)[10], int &nPeople){
     cout << "Name          " << "Balance  " << endl;
     cout << "--------------------------" << endl;
     for(int i = 0; i < nPeople; i++){
-      for(int j = 0; j < 20; j++)
-        cout << personArray[i].name[j];
-    cout << " " << personArray[i].balance << endl;
+        cout << personArray[i].name;
+        cout << " " << personArray[i].balance << endl;
     }
 }
 void FindRichest(PERSON (&personArray)[10], int &nPeople){
@@ -76,9 +75,9 @@ void NewCopy(string &fileName, PERSON (&personArray)[10], int &nPeople){
 
   if(file.is_open()){
     for(int i = 0; i < nPeople; i++){
-      for(int j = 0; j < 20; j++){
-        file << personArray[i].name[j];
-      }
+      //for(int j = 0; j < 20; j++){
+        file << personArray[i].name;
+    //  }
       file << " " << personArray[i].balance << endl;
     }
   }
@@ -98,9 +97,8 @@ int main(){
   string fullName;
   string inputName;
 
-  int mPeople = 6;
-  char charName[20];
-  int i = 0;
+  int mPeople = 0;
+  //char charName[20];
 
   float mAccount;
   PERSON person[10];
@@ -113,15 +111,13 @@ int main(){
 
     //  cout << fullName << " " << mAccount << endl;
     //  for(int i = 0; i < 10; i++){
-        strcpy(charName, fullName.c_str());
-      for(int a = 0; a < fullName.length(); a++){
-        person[i].name[a] = charName[a];
-      }
-        person[i].balance = mAccount;
+        strcpy(person[mPeople].name, fullName.c_str());
+        person[mPeople].balance = mAccount;
 
-        i++;
+        mPeople++;
     // }
       }
+      mPeople -= 1;
     file.close();
   }
   else
