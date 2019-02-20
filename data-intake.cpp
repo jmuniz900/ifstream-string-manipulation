@@ -15,6 +15,7 @@ public:  char name[20];
 void display(PERSON (&personArray)[10], int &nPeople);
 void FindRichest(PERSON (&personArray)[10], int &nPeople);
 void Deposit(string &name, PERSON (&personArray)[10], int &nPeople);
+void NewCopy(string &fileName, PERSON (&personArray)[10], int &nPeople);
 
 void display(PERSON (&personArray)[10], int &nPeople){
 
@@ -45,10 +46,7 @@ void FindRichest(PERSON (&personArray)[10], int &nPeople){
     cout << endl;
 }
 void Deposit(string &name, PERSON (&personArray)[10], int &nPeople){
-<<<<<<< HEAD
 
-
-=======
   float addMoney;
   char tmpName[20];
   string tmpName2;
@@ -61,21 +59,39 @@ void Deposit(string &name, PERSON (&personArray)[10], int &nPeople){
 strcpy(tmpName, name.c_str());
 
 while(counter < nPeople){
-  //for(int i = 0; i < nPeople; i++){
-    for(int j = 0; j < name.length(); j++ ){
-      if(tmpName[j] == personArray[counter].name[j]){
-          personArray[counter].balance += addMoney;
-      }
+
+  tmpName2 = personArray[counter].name;
+  if(name == tmpName2){
+    personArray[counter].balance += addMoney;
+    cout << "Now your new balance is: " << personArray[counter].balance;
+    cout << endl;
+  }
     counter++;
+}
+
+}
+void NewCopy(string &fileName, PERSON (&personArray)[10], int &nPeople){
+  fstream file;
+  file.open(fileName);
+
+  if(file.is_open()){
+    for(int i = 0; i < nPeople; i++){
+      for(int j = 0; j < 20; j++){
+        file << personArray[i].name[j];
+      }
+      file << " " << personArray[i].balance << endl;
     }
   }
-  cout << "Now your new balance is: " << personArray[counter].balance;
-  cout << endl;
->>>>>>> e06d8816bda381f9b4ab42e658f940f9e20e60ba
+  else{
+    cout << "Error: Could not open file!";
+  }
+  file.close();
 }
 
 int main(){
   fstream file;
+
+  string fileName = "data.txt";
 
   string firstName;
   string lastName;
@@ -89,7 +105,7 @@ int main(){
   float mAccount;
   PERSON person[10];
 
-  file.open("data.txt");
+  file.open(fileName);
   if(file.is_open()){
     while(file.eof() == false){
       file >> firstName >> lastName >> mAccount;
@@ -114,17 +130,15 @@ int main(){
     display(person, mPeople);
     cout << endl << endl;
     FindRichest(person, mPeople);
-<<<<<<< HEAD
     cout << endl;
 
-    string name;
-    Deposit()
-=======
     cout << "Enter your full name to deposit money: ";
     getline(cin, inputName);
     cout << endl;
     Deposit(inputName, person, mPeople);
->>>>>>> e06d8816bda381f9b4ab42e658f940f9e20e60ba
+
+    NewCopy(fileName, person, mPeople);
+
 
  /* cout << person[0].balance << endl;
     for(int j = 0; j < 20; j++)
