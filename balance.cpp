@@ -154,6 +154,7 @@ int main(){
     cout << endl;
     cout << endl;
     Deposit(inputName, person, mPeople, amountM);
+    cout << endl;
 
     cout << "Enter your full name to deposit money: ";
     getline(cin, inputName);
